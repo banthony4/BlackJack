@@ -6,11 +6,12 @@ values = {'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8,
 
 playing = True
 
+# Card, Deck, Hand, Chip classes for game
 class Card:
     def __init__(self,suit,rank):
         self.suit = suit
         self.rank = rank
-        
+    
     def __str__(self):
         return self.rank + ' of ' + self.suit
 
@@ -64,6 +65,7 @@ class Chips:
     def lose_bet(self):
         self.total -= self.bet
 
+# Player actions
 def take_bet(chips):
     while True:
         try:
@@ -89,7 +91,7 @@ def hit_or_stand(deck,hand):
             hit(deck,hand)  
 
         elif x[0].lower() == 's':
-            print("Player stands. Dealer is playing.")
+            print("\nPlayer stands. Dealer is playing.")
             playing = False
 
         else:
@@ -97,6 +99,7 @@ def hit_or_stand(deck,hand):
             continue
         break
 
+# Showing of cards
 def show_some(player,dealer):
     print("\nDealer's Hand:")
     print(" <card hidden>")
@@ -110,6 +113,8 @@ def show_all(player,dealer):
     print("\nPlayer's Hand:", *player.cards, sep='\n ')
     print("Player's Hand =",player.value)
 
+
+# Possible Outcomes
 def player_busts(player,dealer,chips):
     print("Player busts!")
     chips.lose_bet()
@@ -129,6 +134,8 @@ def dealer_wins(player,dealer,chips):
 def push(player,dealer):
     print("Dealer and Player tie! It's a push.")
 
+
+# Game Logic
 while True:
     print('Welcome to BlackJack! Get as close to 21 as you can without going over!\n\
     Dealer hits until she reaches 17. Aces count as 1 or 11.')
